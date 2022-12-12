@@ -16,15 +16,15 @@ After:
 
 ## Usage
 
-Open the competition leaderboard or submissions page, the view episodes icon should turn green.
+Open the competition [leaderboard](https://www.kaggle.com/competitions/lux-ai-2022-beta/leaderboard) or [submissions](https://www.kaggle.com/competitions/lux-ai-2022-beta/submissions) page, the view episodes icon should turn green.
 
 Click the icon to view the episodes and additional features (link to Lux Eye for now).
 
 ## Issues
 
-It does not work if you navigate from another page to the leaderboard or submissions page.
+It does not work if you navigate from another page to the [leaderboard](https://www.kaggle.com/competitions/lux-ai-2022-beta/leaderboard) or [submissions](https://www.kaggle.com/competitions/lux-ai-2022-beta/submissions) page.
 
-You need to refresh the page to make it work.
+You need to **refresh the page** after navigating to it.
 
 ---
 
