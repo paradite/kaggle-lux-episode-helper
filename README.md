@@ -5,19 +5,19 @@ It is a Chrome extension to help viewing Lux AI 2022 Episodes on Kaggle website.
 Before:
 
 <p float="left">
-  <img src="https://github.com/paradite/kaggle-lux-episode-helper/blob/main/screenshots/before_annotated.png?raw=true" alt="Before" width="600"/>
+  <img src="https://github.com/paradite/kaggle-lux-episode-helper/blob/main/screenshots/2before_annotated.png?raw=true" alt="Before" width="600"/>
 </p>
 
 After:
 
 <p float="left">
-  <img src="https://github.com/paradite/kaggle-lux-episode-helper/blob/main/screenshots/after_annotated.png?raw=true" alt="After" width="600"/>
+  <img src="https://github.com/paradite/kaggle-lux-episode-helper/blob/main/screenshots/2after_annotated.png?raw=true" alt="After" width="600"/>
 </p>
 
 ## Features
 
 - Add Lux Eye visualizer links in episode list to view the episode on Lux Eye easily in one click.
-- Add episode score from Kaggle API to corresponding episode in episode list.
+- Add episode score and reward from Kaggle API to corresponding episode in episode list.
 
 ## Usage
 
