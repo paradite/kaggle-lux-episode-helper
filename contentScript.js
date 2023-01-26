@@ -100,7 +100,9 @@ function append(id) {
               0
             )}) ${reward2.toFixed(0)}</span>`;
         const scoreText = `${team1ScoreText}<br>${team2ScoreText}`;
-        const link = `https://jmerle.github.io/lux-eye-2022/visualizer?input=${id}`;
+        // const link = `https://jmerle.github.io/lux-eye-2022/visualizer?input=${id}`;
+        // https://s2vis.lux-ai.org/#/?input=46158219
+        const link = `https://s2vis.lux-ai.org/#/?input=${id}`;
         element.insertAdjacentHTML(
           'beforeend',
           `<span class="lux-helper-block">${scoreText}<br><a href="${link}" target="_blank">Lux Eye</a></span>`
@@ -149,6 +151,7 @@ function listenToClick(elements) {
 function tryAttachListener() {
   // #site-content > div.sc-hbjaKc.jCsmA-d.competition > div > div:nth-child(2) > div:nth-child(5) > ul > li:nth-child(8) > div.sc-olbas.hBwZaf.sc-KiOns.dvKhsD > span.sc-ikZpkk.sc-jIZahH.sc-cyxtte.fEheNQ.dRBIQl.ekyQpa > i
   // #user_row > li > div > span.sc-ikZpkk.sc-jIZahH.sc-cyxtte.fEheNQ.dRBIQl.ekyQpa > i
+  // #site-content > div.sc-hGtivm.czsNwd.competition > div > div:nth-child(2) > div:nth-child(6) > ul > li:nth-child(5) > div.sc-ckMVTt.cCcqLX.sc-gzMtdX.irWGqS > span.sc-ivTmOn.sc-cxabCf.sc-BHInz.fKyDVD.hvJMqH.bEweKS > i
   const userElements = document.querySelectorAll(
     '#site-content > div.competition li > div > span > i.rmwc-icon'
   );
@@ -172,10 +175,10 @@ function tryAttachListener() {
 setTimeout(() => {
   const success = tryAttachListener();
   if (!success) {
-    // try again in 1s
+    // try again in 2s
     setTimeout(() => {
       tryAttachListener();
-    }, 1000);
+    }, 2000);
   }
 }, 1000);
 
