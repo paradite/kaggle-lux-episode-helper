@@ -10,35 +10,32 @@ const prefix = 'episodes-submission-';
 
 const helperFormat = 'Format: teamId (score) reward.';
 
-function showNotice(id) {
-  console.log('Retrieving data for episode id', id);
+function showNotice(id, retryCount) {
+  console.log('Retrieving data for episode id', id, 'retryCount', retryCount);
+
+  // #site-content > div.sc-hGtivm.czsNwd.competition > div > div:nth-child(2) > div.sc-iTONeN.gHfYrC.sc-mTeDU.ipTExk.mdc-dialog.mdc-dialog--open > div.mdc-dialog__container > div > div > h2
 
   const headerItemElem = document.querySelector(
-    '#site-content > div.competition > div > div:nth-child(2) > div.mdc-dialog.mdc-dialog--open > div.mdc-dialog__container > div > div:nth-child(2) > h2'
+    '#site-content > div.competition > div > div:nth-child(2) > div.mdc-dialog.mdc-dialog--open > div.mdc-dialog__container > div > div > h2'
   );
+
+  // console.log('headerItemElem', headerItemElem);
 
   if (headerItemElem) {
     headerItemElem.insertAdjacentHTML(
       'afterend',
-      `<span class="lux-helper-block" id="lux-helper-status">Lux Helper fetching data...</span>`
+      `<span id="lux-helper-status">Lux Helper fetching data...</span>`
     );
-  } else {
+    fetchData(id);
+  } else if (retryCount > 0) {
     // try again in 1 second
     setTimeout(() => {
-      const headerItemElem = document.querySelector(
-        '#site-content > div.competition > div > div:nth-child(2) > div.mdc-dialog.mdc-dialog--open > div.mdc-dialog__container > div > div:nth-child(2) > h2'
-      );
-      if (headerItemElem) {
-        headerItemElem.insertAdjacentHTML(
-          'afterend',
-          `<span class="lux-helper-block" id="lux-helper-status">Lux Helper fetching data...</span>`
-        );
-      }
+      showNotice(id, retryCount - 1);
     }, 1000);
   }
 }
 
-function append(id) {
+function fetchData(id) {
   // fetch data from https://www.kaggle.com/api/i/competitions.EpisodeService/ListEpisodes using post with body: {submissionId: $id}
   fetch(
     'https://www.kaggle.com/api/i/competitions.EpisodeService/ListEpisodes',
@@ -75,6 +72,9 @@ function append(id) {
 
       const listItemElems = listItem.querySelectorAll('li > div');
 
+      const totalCount = listItemElems.length > 10 ? 10 : listItemElems.length;
+      const winMap = {};
+
       for (let i = 0; i < listItemElems.length; i++) {
         const element = listItemElems[i];
         const content = element.innerHTML;
@@ -89,6 +89,13 @@ function append(id) {
         const reward1 = agent1.reward || 0;
         const reward2 = agent2.reward || 0;
         const team1Won = reward1 >= reward2;
+        if (i < totalCount) {
+          if (team1Won) {
+            winMap[team1] = (winMap[team1] || 0) + 1;
+          } else {
+            winMap[team2] = (winMap[team2] || 0) + 1;
+          }
+        }
         const team1ScoreText = team1Won
           ? `<span class="lux-helper-bold">${team1} (${score1.toFixed(
               0
@@ -110,9 +117,22 @@ function append(id) {
       }
 
       // update status
+      let winArray = [];
+      for (const [key, value] of Object.entries(winMap)) {
+        winArray.push({ name: key, count: value });
+      }
+      winArray.sort((a, b) => b.count - a.count);
+      let winStats = '<br>Last 10 game wins: ';
+      winArray.forEach((item, i) => {
+        if (i > 0) {
+          winStats += ' | ';
+        }
+        winStats += `${item.name}: ${item.count}`;
+      });
+
       const statusElem = document.querySelector('#lux-helper-status');
       if (statusElem) {
-        statusElem.innerHTML = `Lux Helper fetch complete. ${helperFormat}`;
+        statusElem.innerHTML = `Lux Helper fetch complete. ${helperFormat} ${winStats}`;
       } else {
         // try again in 1 second
         setTimeout(() => {
@@ -187,8 +207,6 @@ function runScript() {
   console.log('dialog', dialog);
   if (dialog && dialog.includes(prefix)) {
     const id = dialog.replace(prefix, '');
-    setTimeout(() => showNotice(id), 1000);
-    // delay 2 seconds to wait for the dialog to load
-    setTimeout(() => append(id), 2000);
+    showNotice(id, 5);
   }
 }

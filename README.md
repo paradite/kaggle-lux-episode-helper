@@ -14,6 +14,12 @@ After:
   <img src="https://github.com/paradite/kaggle-lux-episode-helper/blob/main/screenshots/2after_annotated.png?raw=true" alt="After" width="600"/>
 </p>
 
+## Changelog:
+
+- v1.3: Fixed layout issues for longer names. Added last 10 game stats.
+- v1.2: Updated for Lux AI Season 2 launch.
+- v1.1: Added reward information from Kaggle API, optimized layout.
+
 ## Features
 
 - Add Lux Eye visualizer links in episode list to view the episode on Lux Eye easily in one click.

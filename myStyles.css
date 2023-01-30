@@ -1,9 +1,9 @@
 .lux-helper-block {
   font-size: 13px;
-  padding-left: 8px;
+  padding-left: 6px;
   /* padding-right: 16px; */
   /* color: #5c5c5c; */
-  width: 30%;
+  width: 32%;
 }
 
 .lux-helper-bold {
@@ -12,4 +12,8 @@
 
 .lux-helper-block a {
   color: #000;
+}
+
+#lux-helper-status {
+  font-size: 13px;
 }
