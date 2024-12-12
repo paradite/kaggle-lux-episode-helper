@@ -15,8 +15,9 @@ function showNotice(id, retryCount) {
 
   // #site-content > div.sc-hGtivm.czsNwd.competition > div > div:nth-child(2) > div.sc-iTONeN.gHfYrC.sc-mTeDU.ipTExk.mdc-dialog.mdc-dialog--open > div.mdc-dialog__container > div > div > h2
 
+  // #kaggle-portal-root-global > div > div.MuiDialog-container.MuiDialog-scrollPaper.css-ekeie0 > div > div > h2
   const headerItemElem = document.querySelector(
-    '#site-content > div.competition > div > div:nth-child(2) > div.mdc-dialog.mdc-dialog--open > div.mdc-dialog__container > div > div > h2'
+    '#kaggle-portal-root-global > div > div.MuiDialog-container.MuiDialog-scrollPaper > div > div > h2'
   );
 
   // console.log('headerItemElem', headerItemElem);
@@ -67,7 +68,7 @@ function fetchData(id) {
       });
 
       const listItem = document.querySelector(
-        '#site-content > div.competition > div > div:nth-child(2) > div.mdc-dialog.mdc-dialog--open'
+        '#kaggle-portal-root-global > div > div.MuiDialog-container.MuiDialog-scrollPaper div > ul.MuiList-root'
       );
 
       const listItemElems = listItem.querySelectorAll('li > div');
@@ -109,7 +110,7 @@ function fetchData(id) {
         const scoreText = `${team1ScoreText}<br>${team2ScoreText}`;
         // const link = `https://jmerle.github.io/lux-eye-2022/visualizer?input=${id}`;
         // https://s2vis.lux-ai.org/#/?input=46158219
-        const link = `https://s2vis.lux-ai.org/#/?input=${id}`;
+        const link = `https://s3vis.lux-ai.org/#/?input=${id}`;
         element.insertAdjacentHTML(
           'beforeend',
           `<span class="lux-helper-block">${scoreText}<br><a href="${link}" target="_blank">Lux Eye</a></span>`
@@ -172,8 +173,10 @@ function tryAttachListener() {
   // #site-content > div.sc-hbjaKc.jCsmA-d.competition > div > div:nth-child(2) > div:nth-child(5) > ul > li:nth-child(8) > div.sc-olbas.hBwZaf.sc-KiOns.dvKhsD > span.sc-ikZpkk.sc-jIZahH.sc-cyxtte.fEheNQ.dRBIQl.ekyQpa > i
   // #user_row > li > div > span.sc-ikZpkk.sc-jIZahH.sc-cyxtte.fEheNQ.dRBIQl.ekyQpa > i
   // #site-content > div.sc-hGtivm.czsNwd.competition > div > div:nth-child(2) > div:nth-child(6) > ul > li:nth-child(5) > div.sc-ckMVTt.cCcqLX.sc-gzMtdX.irWGqS > span.sc-ivTmOn.sc-cxabCf.sc-BHInz.fKyDVD.hvJMqH.bEweKS > i
+
+  // #site-content > div:nth-child(2) > div > div > div.sc-evXUun.jFjTYt > div.sc-EBWJC.eDLtzp > div:nth-child(4) > ul > li:nth-child(1) > div > a > div.sc-jrzWqq.iespTy > span
   const userElements = document.querySelectorAll(
-    '#site-content > div.competition li > div > span > i.rmwc-icon'
+    '#site-content div.competition li > div > a > div > span.google-symbols'
   );
   if (userElements && userElements.length) {
     listenToClick(userElements);
