@@ -184,8 +184,9 @@ function tryAttachListener() {
   } else {
     // #site-content > div.sc-hbjaKc.jCsmA-d.competition > div > div.sc-fnheHR.iLvLBA > div.sc-efUWQm.itlQwP > div:nth-child(4) > ul > li:nth-child(1) > div > a > div.sc-geFwrG.llqHmP > i
     // #site-content > div.sc-hbjaKc.jCsmA-d.competition > div > div.sc-fnheHR.iLvLBA > div.sc-efUWQm.itlQwP > div:nth-child(4) > ul > li:nth-child(4) > div > a > div.sc-geFwrG.llqHmP > i
+    // #site-content > div:nth-child(2) > div > div > div.sc-kJyDer.gxcKTX > div:nth-child(5) > ul > li:nth-child(2) > div > span.sc-eUlrpB.sc-goKQVP.dpOfYN.iOkicb > span
     const submissionElements = document.querySelectorAll(
-      '#site-content > div.competition > div > div ul.km-list > li > div > a > div > i.rmwc-icon'
+      '#site-content div.competition > div > div ul li.MuiListItem-root > div > span > span.google-symbols'
     );
     if (submissionElements && submissionElements.length) {
       listenToClick(submissionElements);
